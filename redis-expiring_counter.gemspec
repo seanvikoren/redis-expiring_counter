@@ -4,7 +4,7 @@ require "redis-expiring_counter/version"
 
 Gem::Specification.new do |s|
   s.name        = "redis-expiring_counter"
-  s.version     = redis-expiring_counter::VERSION
+  s.version     = RedisExpiringCounter::VERSION
   s.authors     = ["Sean Vikoren"]
   s.email       = ["sean@vikoren.com"]
   s.homepage    = "https://github.com/seanvikoren/redis-expiring_counter"

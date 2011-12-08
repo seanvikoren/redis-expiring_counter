@@ -11,7 +11,7 @@ end
 #require 'rake/extensiontask'
 require 'rake'
 
-GEM_NAME = 'geocoder-simplified'
+GEM_NAME = 'redis-expiring_counter'
 
 spec = Gem::Specification.new do |s|
   s.name = GEM_NAME

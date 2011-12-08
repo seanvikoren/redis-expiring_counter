@@ -1,5 +1,6 @@
-The geocoder-simplified gem is intended to offer a no-frills wrapper on the geocoder gem.
-
+The redis-expiring_counter gem builds a counter on top of redis allowing for fast and accurate rate limiting.
+Currently, it should work fine for limiting actions up to a couple thousand per second.
+The first use of it will be to limit api calls within a 24 hour window.
 Please let me know if you find a way to make this better.
 
 Cheers,
@@ -7,39 +8,18 @@ Sean Vikoren
 sean@vikoren.com
 
 
-Here are some clues to making this into a gem:
-git init
+Example Usage:
 
-<make some changes to the gem and test that it works>
-<update the version>
-git commit -a -m "updated version"
-git push
-gem build gem_with_extension_example.gemspec
-gem push gem_with_extension_example-0.0.2.2.gem
+require "redis-expiring_counter"
 
-# For local update after changing .gemspec
-bundle update
+google_duration_of_limit_in_seconds = 24 * 60 * 60
+google_max_calls_per_day = 2500
 
-# Gem Building and Installation
-gem build geocoder-simplified.gemspec               # build gem
-gem install gem_with_extension_example-0.0.0.gem    # install gem
-gem list | grep gem_with_extension_example          # verify installation of gem
-gem env                                             # locate installation directory
+google_counter = RedisExpiringCounter.new("google", google_duration_of_limit_in_seconds, google_max_calls_per_day)
 
-# Publishing a gem
-you will need an account on rubygems.org and github.com
-to generate your key:
-curl -u vikoren https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
-
-# Local publish
-gem 'my_engine', :git => 'http://myserver.com/git/my_engine'
-
-
-There were many sources used to get this working, but here are a couple:
-# Following the 'bundle gem' method
-http://railscasts.com/episodes/245-new-gem-with-bundler
-
-# C Extension
-http://ruby-doc.org/docs/ProgrammingRuby/html/ext_ruby.html
-http://www.eqqon.com/index.php/Ruby_C_Extension_API_Documentation_%28Ruby_1.8%29
+20.times do
+  if google_counter.increment
+    # call google api
+  end
+end
 

@@ -1,14 +1,14 @@
 redis-expiring_counter
 ======================
 
-The redis-expiring_counter gem builds a counter on top of redis allowing for fast and
-accurate rate limiting.  Currently, it should work fine for limiting actions up to a
+The redis-expiring_counter gem builds a counter on top of redis allowing for fast and  
+accurate rate limiting.  Currently, it should work fine for limiting actions up to a  
 couple thousand per second.
 
 Please let me know if you find a way to make this better.
 
-Cheers,
-Sean Vikoren
+Cheers,  
+Sean Vikoren  
 <sean@vikoren.com>
 
 <br />
